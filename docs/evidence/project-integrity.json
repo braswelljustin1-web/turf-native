@@ -1,0 +1,22 @@
+{
+  "procedure": "python scripts/check_project.py",
+  "utc_time": "2026-11-04T01:56:41.603833+00:00",
+  "environment": "Windows; Python standard library",
+  "result": "PASS",
+  "checks": [
+    "unique and resolved project object IDs",
+    "source/resource paths exist",
+    "shared scheme target references",
+    "valid Info/privacy XML property lists"
+  ],
+  "project_sha256": "4a63f7de8572cfd3d93b994a24d5bf6e2e6a643ea34f3fd4ee780a85d7bd54a2",
+  "not_tested": [
+    "Swift compilation",
+    "Xcode project loading",
+    "Swift tests",
+    "simulator",
+    "device",
+    "signing",
+    "App Store submission"
+  ]
+}

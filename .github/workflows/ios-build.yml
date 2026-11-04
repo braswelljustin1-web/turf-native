@@ -1,0 +1,39 @@
+name: iPhone simulator build (manual only)
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_compute:
+        description: "Run one macOS job after reviewing account allowance and spending controls"
+        type: boolean
+        required: true
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: iphone-manual-build
+  cancel-in-progress: false
+
+jobs:
+  simulator:
+    if: ${{ vars.CLOUD_BUILD_ENABLED == 'true' && inputs.confirm_compute == true }}
+    runs-on: macos-26
+    timeout-minutes: 25
+    steps:
+      - name: Check out reviewed source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+      - name: Build and run unsigned iPhone simulator tests
+        run: python3 scripts/ci_ios.py
+      - name: Preserve build and test evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: iphone-simulator-evidence-${{ github.run_id }}-${{ github.run_attempt }}
+          path: build/ci/
+          retention-days: 3
+          if-no-files-found: warn
+          include-hidden-files: false
