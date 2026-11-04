@@ -1,14 +1,14 @@
 # Cloud iPhone build from Windows
 
-Prepared configuration only. No repository has been created or uploaded and no cloud job has run.
+Private repository: https://github.com/braswelljustin1-web/turf-native . The first cloud attempt failed before checkout because GitHub could not allocate an ARM runner. See BUILD_STATE for current run evidence.
 
 ## What is prepared
 
-`.github/workflows/ios-build.yml` runs on a standard GitHub macOS 26 runner. It generates the Xcode project, checks its structure, runs the Python calculator tests, then builds and runs the native XCTest suite on an available iPhone simulator. It requires Xcode 26+ and fails if a compatible simulator is unavailable; it does not install large runtimes automatically.
+`.github/workflows/ios-build.yml` runs on the standard macos-26-intel runner to avoid the ARM capacity failure. GitHub's runner image inventory lists Xcode 26.6 as default. It generates the Xcode project, checks its structure, runs the Python calculator tests, then builds and runs the native XCTest suite on an available iPhone simulator. It requires Xcode 26+ and fails if a compatible simulator is unavailable; it does not install large runtimes automatically.
 
 This is an unsigned simulator build. It cannot install on your physical iPhone and does not produce a signed IPA, TestFlight upload or App Store submission. No Apple account, signing certificate, provider key or paid developer membership is needed for this unsigned test job.
 
-The workflow is manual-only, with no push/PR/schedule trigger. Its job remains skipped unless both `CLOUD_BUILD_ENABLED` is set to `true` and the dispatch checkbox is selected. This is an execution gate, not a billing cap. Job timeout: 25 minutes. One running job in this workflow group at a time; another manual request can queue. Artifact retention: three days. No retries are automated.
+The owner authorized automatic builds on relevant main-branch pushes (ios, backend, scripts, or this workflow). Documentation-only pushes do not build. Manual dispatch remains available with its confirmation checkbox. Both paths require CLOUD_BUILD_ENABLED=true. This gate is not a billing cap. The account's $0 paid Actions budget is unchanged; included allowance is used first. Job timeout: 25 minutes. One running job at a time; additional requests can queue. Artifact retention: three days. No scheduled builds or automated retries.
 
 ## Owner setup, before running
 
@@ -38,3 +38,4 @@ Physical-iPhone installation needs a separate signing/distribution setup. Prepar
 - [Artifact upload and retention](https://github.com/actions/upload-artifact)
 
 Configuration prepared November 3, 2026. Account eligibility, actual cost and first cloud execution remain unknown.
+

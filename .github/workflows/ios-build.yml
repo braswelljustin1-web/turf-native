@@ -1,6 +1,13 @@
-name: iPhone simulator build (manual only)
+name: iPhone simulator build
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - 'ios/**'
+      - 'backend/**'
+      - 'scripts/**'
+      - '.github/workflows/ios-build.yml'
   workflow_dispatch:
     inputs:
       confirm_compute:
@@ -18,8 +25,8 @@ concurrency:
 
 jobs:
   simulator:
-    if: ${{ vars.CLOUD_BUILD_ENABLED == 'true' && inputs.confirm_compute == true }}
-    runs-on: macos-26
+    if: ${{ vars.CLOUD_BUILD_ENABLED == 'true' && (github.event_name == 'push' || inputs.confirm_compute == true) }}
+    runs-on: macos-26-intel
     timeout-minutes: 25
     steps:
       - name: Check out reviewed source

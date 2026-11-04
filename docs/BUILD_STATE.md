@@ -2,6 +2,22 @@
 
 ## November 4 — private GitHub repository
 
+### November 4 — runner capacity recovery and automatic builds
+
+Run 41851076120 failed before any steps: simulator cancelled after 15m 2s, runner_id=0. GitHub annotations: Internal server error (correlation d81ab36a-a25c-43a2-975e-4a470e98f24d); job not acquired by hosted runner after multiple attempts; macOS ARM capacity constraints. This was not a compiler failure or evidence of depleted allowance. Owner authorized automatic builds and use of included allowance with no added money. Changed runner to standard macos-26-intel (official runner-images inventory confirms label and Xcode 26.6 default), added path-filtered main pushes, retained manual confirmation, variable gate, 25-minute timeout, read-only job token, and 3-day artifacts. Paid budget remains $0. A relevant push will retry on the Intel pool; success must be verified separately.
+
+### November 4 — first cloud run submitted
+
+Follow-up result check (GitHub API): existing run 41851076120 remains queued, attempt 1, conclusion null; simulator job 126647284551 also queued with no steps or logs URL. No build/test result is available. No additional run dispatched and no settings changed. Next: recheck this same run; inspect job logs once a runner starts.
+
+User authorized continuation after allowance review. Set repository variable CLOUD_BUILD_ENABLED=true and verified saved value; dispatched exactly one manual run with confirm_compute=true on main commit 3ae48e01ee370d86c9239792921b865afb62f60f. Run https://github.com/braswelljustin1-web/turf-native/actions/runs/41851076120 ; job 126647284551. Last observed after approximately four minutes: Queued, condition evaluated true, waiting for hosted macos-26 runner. No checkout, compilation or tests observed yet; no result claimed. Existing 25-minute running-job timeout remains; queue wait is separate. Paid budget unchanged at $0. Publication/signing untouched. Gate remains true but workflow is manual only and each dispatch requires confirm_compute. Next: check this existing run to completion before dispatching another; inspect logs and save results. Screenshot docs/evidence/first-cloud-run.png. Local checkpoint not uploaded.
+
+### November 4 — read-only allowance review
+
+Signed-in GitHub Billing Overview verified GitHub Free, November 1-30 2026: $0 compute used / $12 included; Actions storage 0 GB / 0.5 GB; total billable Actions usage $0. Included limits reset in 27 days as displayed. Budgets page verified account-wide Actions budget $0.00, $0.00 spent, status Usage blocked; included-usage alerts On. GitHub documentation distinguishes budgets for paid use from included allowance. No settings changed, no workflow enabled/dispatched, no payment information collected. Next small batch: authorize one manual simulator build while preserving the $0 paid budget and existing 25-minute job timeout; execution eligibility remains untested. Sources: https://github.com/settings/billing and https://github.com/settings/billing/budgets and https://docs.github.com/en/billing/concepts/budgets-and-alerts . This local checkpoint is not uploaded.
+
+Transfer verified: main points to 3ae48e01ee370d86c9239792921b865afb62f60f; all 39 expected file paths are present, with no truncated listing. GitHub reports zero workflow runs. Local verification evidence: docs/evidence/github-transfer.json. This checkpoint and evidence were saved after the source commit and are not yet uploaded. Next executable step: review account Actions allowance/spending controls, then obtain approval for one manually gated simulator build. No native build or device tests ran in this batch.
+
 Verified owner-connected GitHub account: braswelljustin1-web. Created private repository https://github.com/braswelljustin1-web/turf-native and verified connector push/admin access. Initial README commit: c6fec725fb45662a31ac22de5d54f99e082b68df. The source transfer follows as one commit; final verification is recorded locally in docs/evidence/github-transfer.json when successful.
 
 Cloud-build enable variable has not been set and no workflow was dispatched. Account compute allowance/spending controls remain unreviewed. Publication, signing and billing remain disabled. Native code remains SOURCE PREPARED, not BUILD VERIFIED.
@@ -97,3 +113,4 @@ TEST RESULT, continuation batch 2026-11-03: `python scripts/generate_xcode.py` c
 ## Next executable step
 
 Continue Phase 0 register/capability/test-plan reconciliation, then add property-confirmed CoreLocation with manual fallback and persistent form drafts. If a macOS runner is available, execute the exact Xcode/Swift tests in docs/SETUP.md before claiming native functionality. Continue in small batches under the owner's usage constraint; an exact Work percentage cannot be measured. Camera and dictation follow as separate bounded increments. No new percentage allocation or reset is assumed.
+
